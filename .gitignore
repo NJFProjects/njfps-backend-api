@@ -11,6 +11,7 @@ vendor/
 .env.local
 .env.*.local
 .venv
+.flaskenv
 
 # Ignore log files
 *.log
