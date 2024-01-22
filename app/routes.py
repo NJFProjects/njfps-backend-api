@@ -1,7 +1,8 @@
-from flask import Flask, request
+from flask import request
 from flask_restx import Api, Resource
 
-app = Flask(__name__)
+from app import app
+
 api = Api(app)
 
 todos = {"todo1": "data=Remember the milk"}
