@@ -25,3 +25,5 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app, model_class=Base)
 migrate = Migrate(app, db)
+
+from app import api, models  # noqa: E402, F401

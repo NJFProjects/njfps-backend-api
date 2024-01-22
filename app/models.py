@@ -3,6 +3,7 @@ from typing import Optional
 
 import sqlalchemy as sa
 import sqlalchemy.orm as so
+from werkzeug.security import check_password_hash, generate_password_hash
 
 from app import db
 
@@ -17,6 +18,35 @@ class Account(db.Model):
 
     def __repr__(self):
         return f"<Account {self.username}>"
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    def projects_count(self):
+        query = sa.select(sa.func.count()).select_from(
+            self.projects.select().subquery()
+        )
+        return db.session.scalar(query)
+
+    def to_dict(self, include_email=False):
+        data = {
+            "id": self.id,
+            "username": self.username,
+            "project_count": self.projects_count(),
+        }
+        if include_email:
+            data["email"] = self.email
+        return data
+
+    def from_dict(self, data, new_user=False):
+        for field in ["username", "email"]:
+            if field in data:
+                setattr(self, field, data[field])
+        if new_user and "password" in data:
+            self.set_password(data["password"])
 
 
 class Project(db.Model):
