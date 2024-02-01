@@ -1,7 +1,7 @@
 from werkzeug.exceptions import HTTPException
 from werkzeug.http import HTTP_STATUS_CODES
 
-from app.api import api
+from app.auth import bp
 
 
 def error_response(status_code, message=None):
@@ -15,6 +15,6 @@ def bad_request(message):
     return error_response(400, message)
 
 
-@api.errorhandler(HTTPException)
+@bp.errorhandler(HTTPException)
 def handle_exception(e):
     return error_response(e.code)
