@@ -7,18 +7,6 @@ from app.auth import api
 from app.errors.errors import bad_request
 from app.models import Account
 
-# todos = {"todo1": "data=Remember the milk"}
-
-
-# @api.route("/<string:todo_id>")
-# class TodoSimple(Resource):
-#     def get(self, todo_id):
-#         return {todo_id: todos[todo_id]}
-
-#     def put(self, todo_id):
-#         todos[todo_id] = request.form["data"]
-#         return {todo_id: todos[todo_id]}
-
 
 @api.route("/accounts/<int:id>")
 class AccountApi(Resource):
