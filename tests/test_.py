@@ -5,15 +5,15 @@ from tests import TestConfig
 
 
 @pytest.fixture
-def setUp(self):
-    self.app = create_app(TestConfig)
-    self.app_context = self.app.app_context()
-    self.app_context.push()
+def setUp():
+    app = create_app(TestConfig)
+    app_context = app.app_context()
+    app_context.push()
     db.create_all()
     yield
     db.session.remove()
     db.drop_all()
-    self.app_context.pop()
+    app_context.pop()
 
 
 class TestClass:
