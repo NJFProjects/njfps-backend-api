@@ -14,7 +14,10 @@ class Account(db.Model):
     email: so.Mapped[str] = so.mapped_column(sa.String(120), index=True, unique=True)
     password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
 
-    projects: so.WriteOnlyMapped["Project"] = so.relationship(back_populates="author")
+    # Every project must belong to an account. Once a project dissociate with its account, it should be deleted.
+    projects: so.WriteOnlyMapped["Project"] = so.relationship(
+        back_populates="author", cascade="all, delete-orphan", passive_deletes=True
+    )
 
     def __repr__(self):
         return f"<Account {self.username}>"

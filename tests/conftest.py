@@ -1,7 +1,7 @@
 import pytest
 
 from app import create_app, db
-from tests import TestConfig
+from config import TestConfig
 
 
 # Pushing the app to context for the whole package
