@@ -1,6 +1,6 @@
 # https://github.com/tiangolo/fastapi/blob/master/pyproject.toml#L125
 [tool.ruff]
-select = [
+lint.select = [
     "E",  # pycodestyle errors
     "W",  # pycodestyle warnings
     "F",  # pyflakes
@@ -9,7 +9,7 @@ select = [
     "C4",  # flake8-comprehensions
     "UP",  # pyupgrade
 ]
-ignore = [
+lint.ignore = [
     "E501",  # line too long, handled by black
     "B008",  # do not perform function calls in argument defaults
     "W191",  # indentation contains tabs

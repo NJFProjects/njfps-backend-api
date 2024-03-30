@@ -21,17 +21,25 @@ class Base(DeclarativeBase):
     )
 
 
-app = Flask(__name__)
-app.config.from_object(Config)
-db = SQLAlchemy(app, model_class=Base)
-migrate = Migrate(app, db)
+db = SQLAlchemy()
+migrate = Migrate()
 
-from app.errors import bp as errors_bp  # noqa: E402, F401, I001
 
-app.register_blueprint(errors_bp)
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
 
-from app.auth import bp as auth_bp  # noqa: E402, F401, I001
+    db.init_app(app)
+    migrate.init_app(app, db)
 
-app.register_blueprint(auth_bp, url_prefix="/auth")
+    from app.errors import bp as errors_bp  # noqa: E402, F401, I001
+
+    app.register_blueprint(errors_bp)
+    from app.auth import bp as auth_bp  # noqa: E402, F401, I001
+
+    app.register_blueprint(auth_bp, url_prefix="/auth")
+
+    return app
+
 
 from app import models  # noqa: E402, F401
