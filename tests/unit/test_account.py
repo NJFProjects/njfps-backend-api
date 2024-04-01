@@ -16,14 +16,10 @@ def create_an_account(username="john", email="john@example.com"):
     db.session.commit()
 
 
-def test_password_hashing():
-    u = Account(username="susan", email="susan@example.com")
-    u.set_password("cat")
-    assert u.check_password("dog") is False
-    assert u.check_password("cat") is True
-
-
-def test_create_user():
+# GIVEN a User model
+# WHEN a new User is created
+# THEN check if the new User could be retrieved successfully
+def test_create_account():
     account = Account(username="john", email="john@example.com")
     db.session.add(account)
     db.session.commit()
@@ -35,11 +31,11 @@ def test_create_user():
         db.get_or_404(Account, account.id)
 
 
-# def test_create_account():
-#     u = Account(username='susan', email='susan@example.com')
-#     u.set_password('cat')
-#     assert u.check_password('dog') is False
-#     assert u.check_password('cat') is True
 # GIVEN a User model
-# WHEN a new User is created
-# THEN check the email, hashed_password, and role fields are defined correctly
+# WHEN the User set the password
+# THEN check if the password are hashed and could identified the new entry of password
+def test_password_hashing():
+    u = Account(username="susan", email="susan@example.com")
+    u.set_password("cat")
+    assert u.check_password("dog") is False
+    assert u.check_password("cat") is True
