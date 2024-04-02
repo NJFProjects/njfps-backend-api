@@ -29,12 +29,12 @@
 #     with pytest.raises(NotFound):
 #         db.get_or_404(Account, account.id)
 
-# GIVEN a User model
-# WHEN the User set the password
-# THEN check if the password are hashed and could identified the new entry of password
-# def test_password_hashing():
-#     u = Account(username="susan", email="susan@example.com")
-#     u.set_password("cat")
-#     assert u.check_password("dog") is False
-#     assert u.check_password("cat") is True
+# # GIVEN a User model
+# # WHEN the User set the password
+# # THEN check if the password are hashed and could identified the new entry of password
+# # def test_password_hashing():
+# #     u = Account(username="susan", email="susan@example.com")
+# #     u.set_password("cat")
+# #     assert u.check_password("dog") is False
+# #     assert u.check_password("cat") is True
 

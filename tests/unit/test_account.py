@@ -5,17 +5,6 @@ from app import db
 from app.models import Account
 
 
-# Pushing the app to context for the whole package
-@pytest.fixture()
-def create_an_account(username="john", email="john@example.com"):
-    account = Account(username=username, email=email)
-    db.session.add(account)
-    db.session.commit()
-    yield account
-    db.session.delete(account)
-    db.session.commit()
-
-
 # GIVEN a User model
 # WHEN a new User is created
 # THEN check if the new User could be retrieved successfully
