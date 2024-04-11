@@ -1,3 +1,16 @@
+[tool.pytest.ini_options]
+# https://docs.pytest.org/en/latest/reference/customize.html
+markers =[
+  {smoke = "subset of tests"},
+  {exception = "check for expected exceptions"},
+  {finish = "all of the 'cards finish' related tests"}
+]
+addopts = [
+  # raise an error if it sees us using an undeclared marker, default is a warning
+  "--strict-markers",
+  # list the reason for any test that isn’t passing, including fail, error, skip, xfail, and xpass
+  "-ra"
+]
 # https://github.com/tiangolo/fastapi/blob/master/pyproject.toml#L125
 [tool.ruff]
 lint.select = [
