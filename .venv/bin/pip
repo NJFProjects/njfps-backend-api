@@ -1,4 +1,4 @@
-#!/Users/river1440/Desktop/Job/NJFPS/Frontend/Temp_Platform/njfps-backend-api/.venv/bin/python3.11
+#!/Users/river1440/Desktop/Job/NJFPS/Backend/njfps-backend-api/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

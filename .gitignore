@@ -60,3 +60,6 @@ coverage/
 
 # Ignore local database
 *.db
+
+# Ignore old requirement file
+ALL_requirements.txt
